@@ -7,3 +7,7 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
+@app.route('/menu&authorized=true/')
+def menu():
+    return render_template('menu.html')
+
