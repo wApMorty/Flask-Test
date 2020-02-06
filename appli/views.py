@@ -14,9 +14,11 @@ def index():
 def menu():
     return render_template('menu.html')
 
-@app.route('/result/')
+@app.route('/result/', methods=['POST'])
 def result():
+
     target = os.path.join(APP_ROOT, 'images/')
+    print(target)
 
     if not os.path.isdir(target):
         os.mkdir(target)
@@ -24,7 +26,7 @@ def result():
     print ("Connected !")
 
     for f in request.files.getlist("input-folder-2[]"):
-        filename = f.filename
+        filename = f.filename.split("/")[-1]
         print(filename)
         destination = "/".join([target, filename])
         print(destination)
