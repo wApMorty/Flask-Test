@@ -20,3 +20,7 @@ function connect(){
         window.location="/";
     }
 }
+
+function analyse(){
+    window.location = "../result"
+}
