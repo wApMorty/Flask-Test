@@ -1,9 +1,12 @@
 import os
 from flask import Flask, render_template, request
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder="static/images")
 
 APP_ROOT = os.path.dirname(os.path.abspath(__file__))
+IMAGE_FOLDER = os.path.join('static','images')
+
+app.config['UPLOAD_FOLDER'] = IMAGE_FOLDER
 
 @app.route('/')
 @app.route('/index/')
@@ -17,7 +20,7 @@ def menu():
 @app.route('/result/', methods=['POST'])
 def result():
 
-    target = os.path.join(APP_ROOT, 'images/')
+    target = os.path.join(APP_ROOT, IMAGE_FOLDER)
     print(target)
 
     if not os.path.isdir(target):
@@ -31,5 +34,6 @@ def result():
         destination = "/".join([target, filename])
         print(destination)
         f.save(destination)
-
-    return render_template('analyse.html')
+        
+        # first_picture=os.listdir(target)[0]
+    return render_template('analyse.html', first_pic = os.listdir(target)[0])
