@@ -1,5 +1,6 @@
 import os
 from flask import Flask, render_template, request
+from Object_detection_image import analyseBoue
 
 app = Flask(__name__, static_folder="static/images")
 
@@ -36,4 +37,7 @@ def result():
         f.save(destination)
         
         # first_picture=os.listdir(target)[0]
+
+    analyseBoue(os.path.abspath(IMAGE_FOLDER))
+
     return render_template('analyse.html', first_pic = os.listdir(target)[0])
