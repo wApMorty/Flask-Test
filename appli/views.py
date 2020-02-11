@@ -1,9 +1,6 @@
 import os
 from flask import Flask, render_template, request
 from tensorflow2.models.research.object_detection.Object_detection_image import analyseBoue
-import sys
-
-print( sys.path )
 
 app = Flask(__name__, static_folder="static/images")
 
