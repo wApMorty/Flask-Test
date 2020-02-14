@@ -38,6 +38,8 @@ def result():
         
         # first_picture=os.listdir(target)[0]
 
-    analyseBoue(os.path.abspath(IMAGE_FOLDER))
+    print(os.path.abspath(target))
+    print("DONE")
+    analyseBoue(os.path.abspath(target))
 
     return render_template('analyse.html', first_pic = os.listdir(target)[0])
