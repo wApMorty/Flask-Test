@@ -32,4 +32,6 @@ def result():
         print(destination)
         f.save(destination)
 
+    os.system("python tensorflow2\\models\\research\\object_detection\\Object_detection_image.py")
+
     return render_template('analyse.html')
