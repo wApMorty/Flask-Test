@@ -22,8 +22,6 @@ def result():
 
     if not os.path.isdir(target):
         os.mkdir(target)
-    
-    print ("Connected !")
 
     for f in request.files.getlist("input-folder-2[]"):
         filename = f.filename.split("/")[-1]
