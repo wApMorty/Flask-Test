@@ -1,4 +1,5 @@
 import os
+import shutil
 from flask import Flask, render_template, request
 
 app = Flask(__name__)
@@ -11,6 +12,9 @@ app.config['UPLOAD_FOLDER'] = IMAGE_FOLDER
 @app.route('/')
 @app.route('/index/')
 def index():
+    # Destruction de l'ancien dossier de traitement au lancement de l'appli
+    if os.path.isdir(os.path.join(APP_ROOT,IMAGE_FOLDER)):
+        shutil.rmtree(os.path.join(APP_ROOT,IMAGE_FOLDER))
     return render_template('index.html')
 
 @app.route('/menu&authorized=true/')
@@ -26,15 +30,18 @@ def result():
     if not os.path.isdir(target):
         os.mkdir(target)
 
-    for f in request.files.getlist("input-folder-2[]"):
+    if not os.path.isdir(os.path.join(target, 'analysedPictures')):
+        os.mkdir(os.path.join(target, 'analysedPictures'))
+
+    for f in request.files.getlist("input-folder-2[]"): 
         filename = f.filename.split("/")[-1]
-        print(filename)
         destination = "/".join([target, filename])
-        print(destination)
         f.save(destination)
         
         # first_picture=os.listdir(target)[0]
 
     os.system("python tensorflow2\\models\\research\\object_detection\\Object_detection_image.py")
+    print(os.listdir(os.path.join(APP_ROOT, IMAGE_FOLDER,"analysedPictures")))
 
     return render_template('analyse.html')
+    # return render_template('analyse.html', first_pic = os.listdir(os.path.join(APP_ROOT, IMAGE_FOLDER,"analysedPictures"))[0])
