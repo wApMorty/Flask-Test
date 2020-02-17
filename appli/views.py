@@ -1,8 +1,7 @@
 import os
 from flask import Flask, render_template, request
-from tensorflow2.models.research.object_detection.Object_detection_image import analyseBoue
 
-app = Flask(__name__, static_folder="static/images")
+app = Flask(__name__)
 
 APP_ROOT = os.path.dirname(os.path.abspath(__file__))
 IMAGE_FOLDER = os.path.join('static','images')
@@ -35,10 +34,6 @@ def result():
         f.save(destination)
         
         # first_picture=os.listdir(target)[0]
-
-    print(os.path.abspath(target))
-    print("DONE")
-    analyseBoue(os.path.abspath(target))
 
     os.system("python tensorflow2\\models\\research\\object_detection\\Object_detection_image.py")
 
