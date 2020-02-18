@@ -1,6 +1,6 @@
 import os
 import shutil
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, url_for
 
 app = Flask(__name__)
 
@@ -37,11 +37,15 @@ def result():
         filename = f.filename.split("/")[-1]
         destination = "/".join([target, filename])
         f.save(destination)
-        
-        # first_picture=os.listdir(target)[0]
 
-    os.system("python tensorflow2\\models\\research\\object_detection\\Object_detection_image.py")
-    print(os.listdir(os.path.join(APP_ROOT, IMAGE_FOLDER,"analysedPictures")))
+    os.system("python "+ os.path.join('tensorflow2','models','research','object_detection','Object_detection_image.py'))
+    imageAnalysed = os.listdir(os.path.join(APP_ROOT, IMAGE_FOLDER,"analysedPictures"))
+    listUrl = []
+    for image in imageAnalysed:
+        listUrl.append(url_for('static',filename='images/analysedPictures/' + image))
+    print(listUrl)
 
-    return render_template('analyse.html')
-    # return render_template('analyse.html', first_pic = os.listdir(os.path.join(APP_ROOT, IMAGE_FOLDER,"analysedPictures"))[0])
+    return render_template('analyse.html',
+                            lURL = listUrl
+                            )
+                            
