@@ -43,6 +43,7 @@
     <div class="container h-100">
       <div class="row h-100 align-items-center justify-content-center text-center">
         <div class="col-lg-10 align-self-end">
+          <h1 id="pictureName"> {{lImages[0]}} </h1>
           <img id="image" src= "{{ lURL[0] }}">
           <hr class="divider my-4">
         </div>
@@ -69,14 +70,23 @@
   <script>
 
     var pict = document.getElementById("image");
-    var listURL = "{{ lURL }}";
-    console.log(listURL);
+    var pictName = document.getElementById("pictureName");
+    var listURL = [];
+    var listNoms = [];
+    {% for url in lURL %}
+      listURL.push("{{ url }}");
+    {% endfor %}
+
+    {% for name in lImages %}
+      listNoms.push("{{ name }}");
+    {% endfor %}
     var count = 0;
 
     function next(){
       count = (count + 1)%listURL.length;
       console.log(listURL[count]);
-      pict.setAttribute("src", listURL[count])
+      pict.setAttribute("src", listURL[count]);
+      pictName.innerHTML = listNoms[count]
     }
 
     function previous(){
@@ -85,7 +95,8 @@
         count = listURL.length + count;
       }
       console.log(listURL[count]);
-      pict.setAttribute("src", listURL[count])
+      pict.setAttribute("src", listURL[count]);
+      pictName.innerHTML = listNoms[count]
     }
 
     function save(){

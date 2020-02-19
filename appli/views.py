@@ -46,6 +46,7 @@ def result():
     print(listUrl)
 
     return render_template('analyse.html',
-                            lURL = listUrl
+                            lURL = listUrl,
+                            lImages = imageAnalysed
                             )
                             
