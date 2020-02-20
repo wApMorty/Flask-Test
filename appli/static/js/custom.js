@@ -12,7 +12,7 @@ input.addEventListener("keyup", function(event){
 function connect(){
     var password = document.getElementById("passwordInput");
     console.log("Mot de passe recu : " + password.value)
-    if (password.value == "fromage") {
+    if (password.value == "ecam") {
         console.log("Mot de passe accepté, passage a la page suivante")
         window.location = "menu&authorized=true";
     } else {
