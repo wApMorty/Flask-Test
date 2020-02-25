@@ -25,7 +25,6 @@ def menu():
 def result():
 
     target = os.path.join(APP_ROOT, IMAGE_FOLDER)
-    print(target)
 
     if not os.path.isdir(target):
         os.mkdir(target)
@@ -43,7 +42,6 @@ def result():
     listUrl = []
     for image in imageAnalysed:
         listUrl.append(url_for('static',filename='images/analysedPictures/' + image))
-    print(listUrl)
 
     return render_template('analyse.html',
                             lURL = listUrl,
