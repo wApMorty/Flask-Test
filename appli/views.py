@@ -47,4 +47,10 @@ def result():
                             lURL = listUrl,
                             lImages = imageAnalysed
                             )
+
+@app.route('/done/')
+def done():
+    os.system("python " + os.path.join("analyseFlocs","AnalyseFlocs.py"))
+
+    return render_template('saved.html')
                             
