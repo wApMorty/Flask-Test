@@ -5,16 +5,15 @@ import os
 
 # Données
 
-NbProtoA = 12
-NbProtoB = 14
+NbProtoA = "INCONNU"
+NbProtoB = "INCONNU"
 
 NomExcel = 'ImageAnalise.xlsx'
 
-CWD = os.path.getcwd()
-print(CWD)
+CWD = os.getcwd()
 PATH = "S:\\EME2020\\Flask-Test\\appli\\static\\images\\"
 
-workbook = load_workbook(filename="Template_vierge.xlsx")
+workbook = load_workbook(os.path.join(CWD, "analyseFlocs", "Template_vierge.xlsx"))
 worksheet = workbook.active
 
 i=0
