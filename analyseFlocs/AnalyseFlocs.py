@@ -11,7 +11,7 @@ NbProtoB = "INCONNU"
 NomExcel = 'ImageAnalise.xlsx'
 
 CWD = os.getcwd()
-PATH = "S:\\EME2020\\Flask-Test\\appli\\static\\images\\"
+PATH = "S:\\EME2020\\Livrable 2020\\Neo2020\\appli\\static\\images"
 
 workbook = load_workbook(os.path.join(CWD, "analyseFlocs", "Template_vierge.xlsx"))
 worksheet = workbook.active
